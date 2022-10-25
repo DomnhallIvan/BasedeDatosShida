@@ -12,5 +12,7 @@ db = SQLAlchemy(app)
 bcrypt=Bcrypt(app)
 from codejana_flask import routes
 
+#a
+
 
 
