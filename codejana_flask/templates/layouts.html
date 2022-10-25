@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{title}} </title>
+<!--Bootstrap5 CSS only -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+<!-- Costume para Main.css   -->
+<link rel="stylesheet"  href="{{url_for('static',filename='main.css')}}"  >
+  
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('homepage')}}">AMERIKE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+        <ul class="navbar-nav">
+          <li class="navbar-item"> 
+          <a class="nav-link active" aria-current="page" href="{{url_for('homepage')}}">Home</a>
+          </li>
+          <li class="navbar-item"> 
+          <a class="nav-link" href="{{url_for('account')}}">Account</a>
+        </li>
+        <li class="navbar-item">
+          <a class="nav-link" href="{{url_for('about')}}">About</a>
+        </li>
+        
+        </ul>
+        </div>
+      </div>
+    </div>
+ <!--   Aqui va el paso a la izquierda -->  
+
+ <ul class="navbar-nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{{url_for('register')}}">Registro</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('login')}}">Login</a>
+    </li>
+
+
+  </ul>
+
+  </nav>
+
+
+
+
+
+
+</head>
+<body>
+  <div class="container">
+    {%with messages=get_flashed_messages(with_categories=true)%}
+      {%if messages%}
+        {%for category, message in messages%}
+        <div class="alert alert-{{category}}">
+          {{message}}
+        </div>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
+
+
+
+  </div>
+    {% block contentA%}
+    {%endblock contentA%}
+
+    {% block contentB%}
+    {%endblock contentB%}
+
+    {% block contentC%}
+    {%endblock contentC%}
+
+    {% block contentD%}
+    {%endblock contentD%}
+
+
+
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
