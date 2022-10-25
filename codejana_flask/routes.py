@@ -1,6 +1,7 @@
 
 
-from codejana_flask import app, db
+from click import password_option
+from codejana_flask import app, db, bcrypt
 from flask import Flask, render_template, url_for, redirect, flash
 from codejana_flask.forms import RegistrationForm,LoginForm
 from codejana_flask.models import User
@@ -26,6 +27,7 @@ def account():
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
+        encrypted_password=bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user=User(username=form.username.data, email=form.email.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -37,8 +39,11 @@ def register():
 def login():
     form=LoginForm()
     if form.validate_on_submit():
+        #encrypted_password=bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        #user=User(username=form.username.date,email=form.email.data,password=encrypted_password)
         user=User.query.filter_by(email=form.email.data).first()
-        if user and form.password.data==user.password:
+        if user and bcrypt.check_password_hash(user.password,form.password.data):
+        #if user and form.password.data==user.password:
             flash(f'Login successful for {form.email.data}', category='success')
 
             return redirect(url_for('account'))
