@@ -34,9 +34,11 @@
           <li class="navbar-item"> 
           <a class="nav-link active" aria-current="page" href="{{url_for('homepage')}}">Home</a>
           </li>
+          {%if current_user_is.authenticated%}
           <li class="navbar-item"> 
           <a class="nav-link" href="{{url_for('account')}}">Account</a>
-        </li>
+          </li>
+          {%endif}
         <li class="navbar-item">
           <a class="nav-link" href="{{url_for('about')}}">About</a>
         </li>
@@ -48,12 +50,18 @@
  <!--   Aqui va el paso a la izquierda -->  
 
  <ul class="navbar-nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{{url_for('register')}}">Registro</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{url_for('login')}}">Login</a>
-    </li>
+  {%if current_user.is_authenticated%}
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href ="{{url_for('logout)}}" >Cerrar sesion</a>
+  </li>
+  {%else%}
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{{url_for('register')}}">Registro</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{url_for('login')}}">Login</a>
+  </li>
+ {%endif%}
 
 
   </ul>
