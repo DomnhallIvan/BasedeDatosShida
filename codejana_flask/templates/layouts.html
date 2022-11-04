@@ -11,9 +11,108 @@
 <!-- Costume para Main.css   -->
 <link rel="stylesheet"  href="{{url_for('static',filename='main.css')}}"  >
   
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+rel="stylesheet"
+/>
+<link
+href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
+rel="stylesheet"
+/>
+
+<title>Test</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--Inicio de Nav-->
+<nav class="navbar navbar-expand-md" style="background-color: rgb(0, 0, 0); margin: 0;">
+    <div class="container-fluid">
+      <!--Poniendo imagen-->
+
+        <img src="https://cdn.discordapp.com/attachments/845386494796759080/1024310935046860890/aa.png" alt="" width="120" height="60" >
+
+      <!--End Imagen-->
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                 
+          <h4><a style="color: rgb(255, 255, 255)" class="nav-link active pt-2 m-3" aria-current="page" href="{{url_for('homepage')}}">Home</a></h4>
+
+          <!--DropDown-->
+          <li class="nav-item dropdown">
+           <a style="color: rgb(255, 255, 255)" class="nav-link dropdown-toggle pt-2" data-bs-toggle="dropdown" role="button" aria-expanded="false"><h4>About Us</h4></a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><h4><a style="color: rgb(255, 255, 255)"class="dropdown-item p-3"  href="{{url_for('about')}}">AtraxxDev</a></h4></li>
+              <li><h4><a style="color: rgb(255, 255, 255)"class="dropdown-item p-3" href="{{url_for('aboutAna')}}">AnaDev</a></h4></li>
+              <li><h4><a style="color: rgb(255, 255, 255)"class="dropdown-item p-3" href="{{url_for('aboutIvan')}}">IvanDev</a></h4></li>
+              <li><h4><a style="color: rgb(255, 255, 255)"class="dropdown-item p-3" href="{{url_for('aboutJulio')}}">JulioDev</a></h4></li>
+            </ul>
+          </li>
+          <!--End DropDown-->
+          <!-- Example single danger button -->
+          
+          
+
+          <!--<h3><a style="color: rgb(255, 255, 255)" class="nav-link" href="{{url_for('about')}}">About us</a></h3>-->
+          <!--<h3><a style="color: rgb(254, 255, 254)" class="nav-link" href="{{url_for('games')}}">Games</a></h3>-->
+
+        </div>
+        <ul class="nav justify-content-end">
+      {%if current_user.is_authenticated%} 
+        <button type="button" class="btn btn-outline-warning m-2"><h4><a style="color: rgb(255, 255, 255)" class="nav-link" href="{{url_for('login')}}">Cerrar Sesion</a></button></h4>
+      {%else%}
+        <button type="button" class="btn btn-outline-warning m-2"><h4><a style="color: rgb(255, 255, 255)" class="nav-link" href="{{url_for('login')}}">Login</a></button></h4>
+        <button type="button" class="btn btn-outline-warning m-2"><h4><a style="color: rgb(255, 255, 255)" class="nav-link " href="{{url_for('register')}}">Register</a></button></h4>
+      </ul>
+      {%endif%}
+      </div>
+     
+
+      
+
+    </div>
+
+
+    
+  </nav>
+
+</head>
+<body>
+  <div class="container">
+    {%with messages=get_flashed_messages(with_categories=true)%}
+      {%if messages%}
+        {%for category, message in messages%}
+        <div class="alert alert-{{category}}">
+          {{message}}
+        </div>
+        {%endfor%}
+      {%endif%}
+    {%endwith%}
 
 
 
+  </div>
+    {% block contentA%}
+    {%endblock contentA%}
+
+    {% block contentB%}
+    {%endblock contentB%}
+
+    {% block contentC%}
+    {%endblock contentC%}
+
+    {% block contentD%}
+    {%endblock contentD%}
+
+
+
+ 
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
+<!--SUSSY
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -47,7 +146,7 @@
         </div>
       </div>
     </div>
- <!--   Aqui va el paso a la izquierda -->  
+
 
  <ul class="navbar-nav justify-content-end">
   {%if current_user.is_authenticated%}
@@ -88,24 +187,13 @@
 
 
 
-  </div>
-    {% block contentA%}
-    {%endblock contentA%}
-
-    {% block contentB%}
-    {%endblock contentB%}
-
-    {% block contentC%}
-    {%endblock contentC%}
-
-    {% block contentD%}
-    {%endblock contentD%}
 
 
-
-    <!-- Latest compiled and minified JavaScript -->
+   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
 </body>
 </html>
+
+

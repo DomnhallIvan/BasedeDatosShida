@@ -19,11 +19,29 @@ def homepage():
 def about():
   return render_template('About.html', title='About')
 
+@app.route('/aboutAna')
+def aboutAna():
+    return render_template('AboutAna.html', title='AboutAna')
 
+@app.route('/aboutIvan')
+def aboutIvan():
+    return render_template('AboutIvan.html', title='AboutIvan')
+
+@app.route('/aboutJulio')
+def aboutJulio():
+    return render_template('AboutJulio.html', title='AboutJulio')
+    
 @app.route('/account')
 def account():
   return render_template('Account.html', title='Account')
 
+@app.route('/games')
+def games():
+    return render_template('games.html', title='Games')
+
+@app.route('/about/user')
+def user():
+    return render_template('user.html', title='User')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -63,3 +81,18 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+@app.route('/ElliotP')
+def ElliotP():
+    return render_template('ElliotP.html', title='ElliotP')
+
+@app.route('/AnaP')
+def AnaP():
+    return render_template('AnaP.html', title='AnaP')
+
+@app.route('/JulioP')
+def JulioP():
+    return render_template('JulioP.html', title='JulioP')
+
+@app.route('/IvanP')
+def IvanP():
+    return render_template('IvanP.html', title='IvanP')
