@@ -38,7 +38,7 @@
           <li class="navbar-item"> 
           <a class="nav-link" href="{{url_for('account')}}">Account</a>
           </li>
-          {%endif}
+          {%endif%}
         <li class="navbar-item">
           <a class="nav-link" href="{{url_for('about')}}">About</a>
         </li>
@@ -52,7 +52,7 @@
  <ul class="navbar-nav justify-content-end">
   {%if current_user.is_authenticated%}
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href ="{{url_for('logout)}}" >Cerrar sesion</a>
+    <a class="nav-link active" aria-current="page" href ="{{url_for('logout')}}" >Cerrar sesion</a>
   </li>
   {%else%}
   <li class="nav-item">
