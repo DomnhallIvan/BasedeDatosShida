@@ -4,9 +4,10 @@ from click import password_option
 from flask_login import login_user
 from codejana_flask import app, db, bcrypt
 from flask import Flask, render_template, url_for, redirect, flash
-from codejana_flask.forms import RegistrationForm,LoginForm
+from codejana_flask.forms import RegistrationForm,LoginForm,ResetRequestForm
 from codejana_flask.models import User
 from flask_login import login_user,logout_user,current_user,login_required
+
 
 @app.route('/')
 @app.route('/home')
@@ -96,3 +97,18 @@ def JulioP():
 @app.route('/IvanP')
 def IvanP():
     return render_template('IvanP.html', title='IvanP')
+
+def send_mail():
+ pass
+
+@app.route('/reset_password',methods=['GET','POST'])
+def reset_request():
+  form=ResetRequestForm()
+  if form.validate_on_submit():
+    user=User.query.filter_by(email=form.email.data).first()
+    if user:
+      send_mail()
+      flash('Reset request sent. Check your email.','success')
+      return redirect(url_for('login'))
+
+  return render_template('Reset_request.html', title='Reset',form=form, legend='ResetPassword')

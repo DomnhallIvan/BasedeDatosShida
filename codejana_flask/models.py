@@ -1,5 +1,6 @@
 
-from codejana_flask import db,login_manager
+from codejana_flask import db,login_manager,app
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from datetime import datetime
 from flask_login import UserMixin
 from flask import redirect,url_for
@@ -23,3 +24,16 @@ class User(db.Model,UserMixin):
 
 def __repr__(self):
     return f'{self.username} : {self.email} : {self.date_created.strftime("%d/%m/%Y,%H:%M:%S")}'
+
+def get_token(self,expires_sec=300):
+  serial=Serializer(app.config['SECRET_KEY'],expire_in=expires_sec)
+  return serial.dumps({'user_id':User.id}).decode('utf-8')
+
+@staticmethod
+def verify_token(token):
+  serial=Serializer(app.config['SECRET_KEY'])
+  try:
+    user_id=serial.loads(token)['user_id']
+  except:
+    return None
+  return User.query.get(user_id)
