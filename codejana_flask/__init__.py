@@ -14,7 +14,14 @@ db = SQLAlchemy(app)
 bcrypt=Bcrypt(app)
 
 login_manager=LoginManager(app)
-app.config
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT']=587
+app.config['MAIL_USE_TLS']=True
+
+app.config['MAIL_USERNAME']='pagbasededatos11@gmail.com'
+app.config['MAIL_PASSWORD']='amerike2021'
+
+mail=Mail(app)
 from codejana_flask import routes
 
 #a
