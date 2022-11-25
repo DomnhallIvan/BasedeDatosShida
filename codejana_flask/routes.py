@@ -8,6 +8,7 @@ from codejana_flask.forms import RegistrationForm,LoginForm,ResetRequestForm,Res
 from codejana_flask.models import User
 from flask_login import login_user,logout_user,current_user,login_required
 from flask_mail import Message
+import os
 
 
 @app.route('/')
@@ -34,12 +35,9 @@ def aboutJulio():
     return render_template('AboutJulio.html', title='AboutJulio')
     
 
-def save_img(picture_file):
-  picture_name=picture_file.filename
-  picture_path=os.path.join(app.root_path,'static/profile_pics',picture_name)
-  picture_file.save(picture_path)
-  return picture_name
-@app.route('/account')
+
+
+@app.route('/account',methods=['GET','POST'])
 @login_required
 def account():
   form=AccountUpdateForm()
@@ -50,6 +48,7 @@ def account():
     return redirect(url_for('account'))
   image_url=url_for('static', filename='profile_pics/'+current_user.image_file)
   return render_template('Account.html', title='Account',legend='Account Details',form=form,image_url=image_url)
+
 
 @app.route('/games')
 def games():
@@ -113,7 +112,11 @@ def JulioP():
 def IvanP():
     return render_template('IvanP.html', title='IvanP')
 
-
+def save_img(picture_file):
+  picture_name=picture_file.filename
+  picture_path=os.path.join(app.root_path,'static/profile_pics',picture_name)
+  picture_file.save(picture_path)
+  return picture_name
 
 def send_mail(user):
   token=user.get_token()
@@ -139,7 +142,7 @@ def send_mail(user):
   return render_template('Reset_request.html', title='Reset',form=form, legend='ResetPassword')
 
 @app.route('/reset_password/<token>',methods=['GET','POST'])
-def reset_request(token):
+def reset_token(token):
   user=User.verify_token(token)
   if user is None: 
     flash('That is invalid token or expired. Please try again','warning')
@@ -147,7 +150,7 @@ def reset_request(token):
   
   form=ResetPasswordForm()
   if form.validate_on_submit():
-    hashed_password=bycrpt.generate_password_hash(form.password.data).decode('utf-8')
+    hashed_password=bcrypt.generate_password_hash(form.password.data).decode('utf-8')
     user.password=hashed_password
     db.session.commit()
     flash('Password changed! please login','success')
