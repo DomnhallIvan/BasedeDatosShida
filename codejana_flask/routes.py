@@ -112,6 +112,11 @@ def JulioP():
 def IvanP():
     return render_template('IvanP.html', title='IvanP')
 
+
+
+
+    
+
 def save_img(picture_file):
   picture_name=picture_file.filename
   picture_path=os.path.join(app.root_path,'static/profile_pics',picture_name)
